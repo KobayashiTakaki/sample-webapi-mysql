@@ -12,5 +12,16 @@ services:
     volumes:
       - "mysql-data:/var/lib/mysql"
 
+  webapi:
+    image: "golang:1.21"
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    working_dir: "/app"
+    volumes:
+      - ".:/app"
+    command: ["go", "run", "cmd/webapi/main.go"]
+
 volumes:
   mysql-data:
