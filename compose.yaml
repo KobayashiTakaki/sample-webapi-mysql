@@ -16,8 +16,12 @@ services:
     image: "golang:1.21"
     ports:
       - 8080:8080
-    env_file:
-      - .env
+    environment:
+      WEBAPI_DB_USER: webapi
+      WEBAPI_DB_PASSWORD: webapi
+      WEBAPI_DB_HOST: mysql
+      WEBAPI_DB_PORT: 3306
+      WEBAPI_DB_NAME: webapi
     working_dir: "/app"
     volumes:
       - ".:/app"
