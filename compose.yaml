@@ -12,6 +12,18 @@ services:
     volumes:
       - "mysql-data:/var/lib/mysql"
 
+  # mysql5:
+  #   image: "mysql:5.7"
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: webapi
+  #     MYSQL_USER: webapi
+  #     MYSQL_PASSWORD: webapi
+  #   volumes:
+  #     - "mysql5-data:/var/lib/mysql"
+
   webapi:
     image: "golang:1.21"
     ports:
@@ -29,3 +41,4 @@ services:
 
 volumes:
   mysql-data:
+  mysql5-data:
