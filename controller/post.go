@@ -71,8 +71,7 @@ func (c *PostsController) GetPost(ectx echo.Context) error {
 		return err
 	}
 
-	ctx := ectx.Request().Context()
-	tx, err := c.db.BeginTx(ctx, &sql.TxOptions{ReadOnly: true})
+	tx, err := c.db.Begin()
 	if err != nil {
 		return err
 	}
@@ -92,7 +91,7 @@ func (c *PostsController) GetPost(ectx echo.Context) error {
 		content   string
 		createdAt time.Time
 	)
-	err = tx.QueryRowContext(ctx, query, paramID).Scan(
+	err = tx.QueryRow(query, paramID).Scan(
 		&id,
 		&content,
 		&createdAt,
